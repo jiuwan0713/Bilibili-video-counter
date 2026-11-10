@@ -1,0 +1,409 @@
+:root {
+  --pink: #fb7299;
+  --purple: #b45cff;
+  --panel: #191b25;
+  --line: rgba(255, 255, 255, 0.07);
+  --text: #f4f5f9;
+  --muted: #9599ad;
+  --muted-2: #6d7186;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  width: 360px;
+  min-height: 460px;
+  color: var(--text);
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(120% 70% at 50% -10%, #2c1d2d 0%, #14151f 48%, #0d0e15 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 15px 16px 13px;
+}
+
+/* ---------- 顶部 ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(140deg, var(--pink), var(--purple));
+  box-shadow: 0 6px 16px -8px rgba(251, 114, 153, 0.9);
+  place-items: center;
+}
+
+.brand-mark svg {
+  width: 17px;
+  height: 17px;
+  margin-left: 1px;
+  fill: #fff;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.brand-text p {
+  margin: 1px 0 0;
+  color: var(--muted-2);
+  font-size: 10px;
+}
+
+.icon-btn {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  place-items: center;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.icon-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.icon-btn.is-spinning svg {
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 数据卡片 ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 10px 10px 9px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.card--today {
+  border-color: transparent;
+  background: linear-gradient(150deg, #fb7299 0%, #e14f7f 55%, #c33d8c 100%);
+  box-shadow: 0 10px 22px -12px rgba(251, 114, 153, 0.95);
+}
+
+.card-label {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.card--today .card-label {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.card-value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-top: 1px;
+}
+
+.card-value strong {
+  font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.unit {
+  color: var(--muted-2);
+  font-size: 11px;
+}
+
+.card--today .unit {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.card-sub {
+  overflow: hidden;
+  margin-top: 2px;
+  color: var(--muted-2);
+  font-size: 10.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card--today .card-sub {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ---------- 面板 ---------- */
+
+.panel {
+  padding: 12px 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.panel-head h2 {
+  margin: 0;
+  color: #dfe1ea;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.panel-note {
+  color: var(--muted-2);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 7 天柱状图 ---------- */
+
+.chart {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  align-items: end;
+}
+
+.chart-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.chart-count {
+  height: 12px;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+  line-height: 12px;
+}
+
+.chart-bar-wrap {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.chart-bar {
+  width: 70%;
+  max-width: 18px;
+  min-height: 3px;
+  border-radius: 5px 5px 3px 3px;
+  background: linear-gradient(180deg, rgba(251, 114, 153, 0.55), rgba(180, 92, 255, 0.35));
+  transition: height 0.3s ease;
+}
+
+.chart-bar.is-empty {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.chart-col.is-today .chart-bar {
+  background: linear-gradient(180deg, #ff8fb0, #fb7299);
+  box-shadow: 0 6px 14px -6px rgba(251, 114, 153, 0.9);
+}
+
+.chart-label {
+  color: var(--muted-2);
+  font-size: 10px;
+}
+
+.chart-col.is-today .chart-label {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+/* ---------- 今日列表 ---------- */
+
+.recent {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+
+.recent-item:first-child {
+  border-top: none;
+}
+
+.recent-rank {
+  flex: none;
+  width: 16px;
+  color: var(--muted-2);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.recent-title {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  color: #cfd2dd;
+  font-size: 11.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-time {
+  flex: none;
+  color: var(--muted-2);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  padding: 14px 0 10px;
+  color: var(--muted-2);
+  font-size: 11.5px;
+  text-align: center;
+}
+
+/* ---------- 底部 ---------- */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.switch-track {
+  position: relative;
+  flex: none;
+  width: 30px;
+  height: 17px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.2s;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.switch input:checked + .switch-track {
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+}
+
+.switch input:checked + .switch-track .switch-thumb {
+  transform: translateX(13px);
+}
+
+.switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+.switch-text {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.ghost-btn {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--muted-2);
+  font-family: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.ghost-btn:hover {
+  border-color: rgba(251, 114, 153, 0.45);
+  background: rgba(251, 114, 153, 0.08);
+  color: #ff8ca8;
+}
